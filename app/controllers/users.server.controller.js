@@ -27,6 +27,7 @@ exports.read = function(req, res){
 };
 
 exports.userById = function(req, res, next, id){
+	console.log(id);
 	User.findOne({
 		_id: id
 	},function(err, user){
@@ -162,4 +163,14 @@ exports.saveOAuthUserProfile = function(req, profile, done){
 exports.signout = function(req, res, next){
 	req.logout();
 	res.redirect('/');
-}
+};
+
+exports.requiresLogin = function(req, res, next){
+	if(!req.isAuthenticated()){
+		return res.status(401).send({
+			message: 'User not logged in'
+		});
+	}
+
+	next();
+};

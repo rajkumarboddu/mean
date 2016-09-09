@@ -6,6 +6,8 @@ module.exports = function(){
 
 	// registering a model
 	require('../app/models/users.server.model');
+	require('../app/models/posts.server.model');
+	require('../app/models/articles.server.model');
 
 	return db;
 }
